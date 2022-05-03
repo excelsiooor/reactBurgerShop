@@ -582,6 +582,9 @@ input[type=submit].github {
   -webkit-box-pack: justify;
           justify-content: space-between;
 }
+.restaurant_select_top-cursour {
+  cursor: pointer;
+}
 .restaurant_select_top-header {
   font-size: 2.4rem;
   text-transform: uppercase;
