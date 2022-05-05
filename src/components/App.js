@@ -3,7 +3,7 @@ import Header from './Header';
 import Order from './Order';
 import MenuAdmin from './MenuAdmin';
 import sampleBurgers from '../sample-burgers';
-import Burger from './burger';
+import Burger from './Burger';
 
 class App extends React.Component {
     state = {
@@ -21,6 +21,12 @@ class App extends React.Component {
         this.setState({burgers: sampleBurgers});
     };
 
+    addToOrder = (key) => {
+        const order = {...this.state.order};
+        order[key] = order[key] + 1 || 1;
+        this.setState({order});
+    };
+
     render() {
         return(
             <div className='burger-paradise'>
@@ -31,6 +37,7 @@ class App extends React.Component {
                             return <Burger 
                                 key={key}
                                 index={key}
+                                addToOrder={this.addToOrder}
                                 details={this.state.burgers[key]}
                             />;
                         })}
@@ -44,6 +51,6 @@ class App extends React.Component {
             </div>
         )
     }
-}
+};
 
 export default App;

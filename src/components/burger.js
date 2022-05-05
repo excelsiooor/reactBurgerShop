@@ -3,7 +3,7 @@ import React from 'react';
 class Burger extends React.Component {
     render() {
         const {image, name, price, desc, status} = this.props.details;
-
+        const isAvailable = status === 'available';
         return (
             <li className='menu-burger'>
                 <div className='image-container'>
@@ -15,7 +15,12 @@ class Burger extends React.Component {
                         <span className='price'>{price} ₴</span>
                     </h3>
                     <p>{desc}</p>
-                    <button className='buttonOrder'>Order</button>
+                    <button 
+                    className='buttonOrder'
+                    onClick={() => this.props.addToOrder(this.props.index)}
+                    disabled={!isAvailable}>
+                        {isAvailable ? 'Order' : 'Unavailable'}
+                    </button>
                 </div>
             </li>
         )
