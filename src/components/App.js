@@ -43,7 +43,11 @@ class App extends React.Component {
                         })}
                     </ul>
                 </div>
-                <Order/>
+                <Order 
+                burgers={this.state.burgers} 
+                order={this.state.order} 
+                // , or we can {...this.state}, but we need singl state in future
+                />
                 <MenuAdmin 
                 addBurger={this.addBurger}
                 loadSampleBurgers={this.loadSampleBurgers}
