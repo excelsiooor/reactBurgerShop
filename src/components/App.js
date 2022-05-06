@@ -41,6 +41,12 @@ class App extends React.Component {
         this.setState({burgers});
     };
 
+    updateBurger = (key, updatedBurger) => {
+        const burgers = {...this.state.burgers};
+        burgers [key] = updatedBurger;
+        this.setState({burgers});
+    }
+
     loadSampleBurgers = () => {
         this.setState({burgers: sampleBurgers});
     };
@@ -75,6 +81,8 @@ class App extends React.Component {
                 <MenuAdmin 
                 addBurger={this.addBurger}
                 loadSampleBurgers={this.loadSampleBurgers}
+                burgers={this.state.burgers}
+                updateBurger={this.updateBurger}
                 />
             </div>
         )
