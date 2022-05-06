@@ -46,6 +46,12 @@ class App extends React.Component {
         burgers [key] = updatedBurger;
         this.setState({burgers});
     }
+    
+    deleteBurger = key => {
+        const burgers = {...this.state.burgers};
+        burgers[key] = null;
+        this.setState({burgers});
+    }
 
     loadSampleBurgers = () => {
         this.setState({burgers: sampleBurgers});
@@ -56,6 +62,13 @@ class App extends React.Component {
         order[key] = order[key] + 1 || 1;
         this.setState({order});
     };
+
+    deleteFromOrder = (key) => {
+        const order = {...this.state.order};
+        delete order[key];
+        this.setState({order});
+    }
+
 
     render() {
         return(
@@ -75,7 +88,8 @@ class App extends React.Component {
                 </div>
                 <Order 
                 burgers={this.state.burgers} 
-                order={this.state.order} 
+                order={this.state.order}
+                deleteFromOrder={this.deleteFromOrder}
                 // , or we can {...this.state}, but we need singl state in future
                 />
                 <MenuAdmin 
@@ -83,6 +97,7 @@ class App extends React.Component {
                 loadSampleBurgers={this.loadSampleBurgers}
                 burgers={this.state.burgers}
                 updateBurger={this.updateBurger}
+                deleteBurger={this.deleteBurger}
                 />
             </div>
         )

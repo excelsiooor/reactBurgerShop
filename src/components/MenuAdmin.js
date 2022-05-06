@@ -9,7 +9,8 @@ class MenuAdmin extends React.Component {
             <div className='menu-admin'>
                 <h2>Menu Management</h2>
                 {Object.keys(this.props.burgers).map(key =>{
-                    return <EditBurgerForm 
+                    return <EditBurgerForm
+                    deleteBurger={this.props.deleteBurger}
                     key={key}
                     index ={key}
                     burger={this.props.burgers[key]}
