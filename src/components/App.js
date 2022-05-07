@@ -11,7 +11,7 @@ class App extends React.Component {
 
     static propTypes = {
         match: PropTypes.object
-    }
+    };
 
     state = {
         burgers: {},
