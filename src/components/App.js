@@ -6,6 +6,8 @@ import sampleBurgers from '../sample-burgers';
 import Burger from './Burger';
 import base from '../base';
 import PropTypes from 'prop-types';
+import SingIn from './auth/SignIn';
+import firebase from 'firebase/app';
 
 class App extends React.Component {
 
@@ -75,9 +77,14 @@ class App extends React.Component {
         this.setState({order});
     }
 
+    handleLogout = async() => {
+        await firebase.auth().signOut();
+        window.location.reload();
+    }
 
     render() {
         return(
+            <SingIn>
             <div className='burger-paradise'>
                 <div className='menu'>
                     <Header title="Very Hot Burger"/>
@@ -104,8 +111,10 @@ class App extends React.Component {
                 burgers={this.state.burgers}
                 updateBurger={this.updateBurger}
                 deleteBurger={this.deleteBurger}
+                handleLogout={this.handleLogout}
                 />
             </div>
+            </SingIn>
         )
     }
 };

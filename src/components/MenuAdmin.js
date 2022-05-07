@@ -2,9 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import AddBurgerForm from './AddBurgerForm';
 import EditBurgerForm from './EditBurgerForm';
+import firebase from 'firebase/app';
 
 class MenuAdmin extends React.Component {
-
+    state = {
+        photo: '',
+        user: ''
+    }
     static propTypes = {
         burgers: PropTypes.object,
         deleteBurger: PropTypes.func,
@@ -13,9 +17,33 @@ class MenuAdmin extends React.Component {
         loadSampleBurgers: PropTypes.func
     };
 
+    authHandler = async (authData) => {
+        const {email, photoUrl} = authData.user;
+        this.setState({user: email, photo: photoUrl});
+    };
+
+    componentDidMount() {
+        firebase.auth().onAuthStateChanged(user => {
+            if (user) {
+                this.authHandler({user});
+            }
+        })
+    }
+
     render() {
+        const {user, photo} = this.state;
+        const avatar = photo ? photo : '/images/avatar.png';
         return (
             <div className='menu-admin'>
+                {user ? <div className='login-header'>
+                    <div className='avatar'>
+                        <img src={avatar} alt={user}/>
+                    </div>
+                    <button className='buttonLogout'
+                    onClick={this.props.handleLogout}>
+                        Sign Out
+                    </button>
+                </div> : null}
                 <h2>Menu Management</h2>
                 {Object.keys(this.props.burgers).map(key =>{
                     return <EditBurgerForm
