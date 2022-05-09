@@ -45,7 +45,7 @@ class App extends React.Component {
 
     addBurger = burger => {
         const burgers = {...this.state.burgers};
-        burgers [`burgers${Date.now()}`] = burger;
+        burgers [`burgers`] = burger;
         this.setState({burgers});
     };
 
