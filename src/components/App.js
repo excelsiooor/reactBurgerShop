@@ -3,7 +3,7 @@ import Header from './Header';
 import Order from './Order';
 import MenuAdmin from './MenuAdmin';
 import sampleBurgers from '../sample-burgers';
-import Burger from './Burger';
+import Burger from './burger';
 import base from '../base';
 import PropTypes from 'prop-types';
 import SingIn from './auth/SignIn';
