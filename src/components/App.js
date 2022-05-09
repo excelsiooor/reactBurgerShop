@@ -51,7 +51,7 @@ class App extends React.Component {
 
     updateBurger = (key, updatedBurger) => {
         const burgers = {...this.state.burgers};
-        burgers [key] = updatedBurger;
+        burgers[key] = updatedBurger;
         this.setState({burgers});
     }
     
